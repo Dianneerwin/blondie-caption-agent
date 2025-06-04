@@ -1,0 +1,1 @@
+Drop your BlondieMMDD.tif comic strips here.
