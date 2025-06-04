@@ -62,13 +62,20 @@ Use the tone guidelines and examples above to generate:
 # --- FUNCTION: Generate captions using OpenAI ---
 def generate_captions(prompt):
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are a witty social media copywriter for a classic comic strip."},
-                {"role": "user", "content": prompt}
-            ]
-        )
+        from openai import OpenAI
+
+client = OpenAI(api_key=OPENAI_API_KEY)
+
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "You are a witty social media copywriter for a classic comic strip."},
+        {"role": "user", "content": prompt}
+    ]
+)
+
+return response.choices[0].message.content.strip()
+
         return response['choices'][0]['message']['content'].strip()
     except Exception as e:
         return f"[Error generating caption: {e}]"
