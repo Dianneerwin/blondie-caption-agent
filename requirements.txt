@@ -1,4 +1,0 @@
-openai
-pytesseract
-pillow
-streamlit
